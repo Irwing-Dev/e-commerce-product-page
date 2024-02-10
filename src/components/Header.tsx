@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, ComponentPropsWithRef } from "react";
+import { twMerge } from "tailwind-merge";
+
+import CartModal from "./CartModal";
 
 interface HeaderProps {
     logo: string;
@@ -6,17 +9,24 @@ interface HeaderProps {
     userAvatar: string;
 }
 
-interface INavProps {
-    text: string;
-}
-
-function NavBtns(props: INavProps) {
+const NavBtns = ({
+    children,
+    className,
+    ...props
+}: ComponentPropsWithRef<"a">) => {
     return (
-        <a href="#" className="text-gray-800 hover:text-gray-900">
-            {props.text}
+        <a
+            href="#"
+            className={twMerge(
+                "text-gray-700 hover:text-gray-900 hover:underline hover:underline-offset-[34px] hover:decoration-[#ff7d1a] hover:decoration-4",
+                className
+            )}
+            {...props}
+        >
+            {children}
         </a>
     );
-}
+};
 
 const Header: React.FC<HeaderProps> = ({ logo, cart, userAvatar }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,7 +40,6 @@ const Header: React.FC<HeaderProps> = ({ logo, cart, userAvatar }) => {
             <div className="max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-between h-16">
                     <div className="absolute inset-y-0 left-0 flex items-center">
-                        {/* Mobile menu toggle button */}
                         <button
                             className="text-gray-800 hover:text-gray-900 sm:hidden"
                             onClick={handleMobileMenuToggle}
@@ -62,49 +71,59 @@ const Header: React.FC<HeaderProps> = ({ logo, cart, userAvatar }) => {
                     </div>
                     <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start gap-3">
                         <div className="flex-shrink-0">
-                            <img src={logo} alt="Sneakers" />
+                            <img
+                                src={logo}
+                                alt="Sneakers"
+                                className="w-[120px] md:w-auto"
+                            />
                         </div>
-                        <div className="hidden sm:block sm:ml-6">
+                        <div className="hidden md:block sm:ml-6">
                             <nav className="space-x-4 flex">
-                                <NavBtns text="Collections" />
-                                <NavBtns text="Men" />
-                                <NavBtns text="Womem" />
-                                <NavBtns text="About" />
-                                <NavBtns text="Contact" />
+                                <NavBtns>Collections</NavBtns>
+                                <NavBtns>Men</NavBtns>
+                                <NavBtns>Womem</NavBtns>
+                                <NavBtns>About</NavBtns>
+                                <NavBtns>Contact</NavBtns>
                             </nav>
                         </div>
                     </div>
-                    <div className="relative">
-                        <div className="flex gap-5 items-center">
-                            <img
-                                src={cart}
-                                className="cursor-pointer"
-                                height={30}
-                                width={30}
-                            />
-                            <img
-                                src={userAvatar}
-                                alt=""
-                                className="cursor-pointer hover:border-2 hover:border-[#ff7d1a] rounded-full"
-                                height={50}
-                                width={50}
-                            />
-                        </div>
+                    <div className="flex gap-5 items-center">
+                        <img
+                            src={cart}
+                            className="cursor-pointer"
+                            onClick={CartModal}
+                        />
+                        <img
+                            src={userAvatar}
+                            alt=""
+                            className="cursor-pointer hover:border-2 hover:border-[#ff7d1a] rounded-full"
+                            width={40}
+                            height={40}
+                        />
                     </div>
                 </div>
             </div>
-            {/* Mobile menu component */}
             <div
                 className={`${
                     isMobileMenuOpen ? "block" : "hidden"
-                } sm:hidden absolute left-0 w-full h-auto bg-gray-200`}
+                } sm:hidden absolute left-0 w-full h-auto bg-gray-100`}
             >
-                <nav className="p-5">
-                    <NavBtns text="Collections" />
-                    <NavBtns text="Men" />
-                    <NavBtns text="Womem" />
-                    <NavBtns text="About" />
-                    <NavBtns text="Contact" />
+                <nav className=" flex flex-col gap-3">
+                    <NavBtns className="hover:no-underline hover:bg-gray-200 w-full p-2">
+                        Collections
+                    </NavBtns>
+                    <NavBtns className="hover:no-underline hover:bg-gray-200 w-full p-2">
+                        Men
+                    </NavBtns>
+                    <NavBtns className="hover:no-underline hover:bg-gray-200 w-full p-2">
+                        Womem
+                    </NavBtns>
+                    <NavBtns className="hover:no-underline hover:bg-gray-200 w-full p-2">
+                        About
+                    </NavBtns>
+                    <NavBtns className="hover:no-underline hover:bg-gray-200 w-full p-2">
+                        Contact
+                    </NavBtns>
                 </nav>
             </div>
         </div>
