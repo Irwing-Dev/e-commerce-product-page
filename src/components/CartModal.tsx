@@ -19,20 +19,18 @@ import iconDelete from "@/assets/images/icon-delete.svg";
 export default function CartModal() {
     const { count, setCount } = useContext(CartContext);
     const { finalValue, setFinalValue } = useContext(CartContext);
-    const { isOpen, setIsOpen } = useContext(CartContext);
-
-    console.log(isOpen);
+    const { setIsOpen } = useContext(CartContext);
 
     const deleteValues = () => {
         setFinalValue(0);
-        setCount(0);
+        setCount(1);
     };
 
     return (
         <Dialog>
             <DialogTrigger>
-                <div>
-                    <img src={cart} className="cursor-pointer" onClick={() => setIsOpen(true)} alt="Cart" />
+                <div onClick={() => setIsOpen(true)}>
+                    <img src={cart} className="cursor-pointer" alt="Cart" />
                     <span
                         className={`relative bottom-6 left-3 bg-[#ff7d1a] w-5 h-3 rounded-lg items-center justify-center text-xs text-white cursor-pointer ${
                             finalValue == 0 ? "hidden" : "flex"
@@ -42,13 +40,13 @@ export default function CartModal() {
                     </span>
                 </div>
             </DialogTrigger>
-            <DialogContent className="fixed">
-                <Card className="w-11/12 sm:w-[370px] sm:right-24 fixed top-16 right-4 shadow-2xl">
+            <DialogContent className="absolute z-50">
+                <Card className="w-11/12 sm:w-[370px] sm:right-24 fixed top-16 right-4 shadow-2xl z-50">
                     <CardHeader>
                         <CardTitle className="text-lg">Cart</CardTitle>
                     </CardHeader>
                     <hr />
-                    <CardContent className="h-44 flex items-center justify-center">
+                    <CardContent className="h-44 flex items-center justify-center z-50">
                         {finalValue == 0 ? (
                             <p className="text-[#68707d] font-bold">
                                 Your Cart is empty

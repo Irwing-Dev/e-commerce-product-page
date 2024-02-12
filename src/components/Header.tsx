@@ -29,7 +29,7 @@ export const NavBtns = ({
 
 const Header: React.FC<HeaderProps> = ({ logo, userAvatar }) => {
     return (
-        <div className="bg-white w-10/12 p-3 fixed shadow-md">
+        <div className="bg-white w-10/12 p-3 fixed shadow-md z-50">
             <div className="max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center justify-between h-16">
                     <div className="absolute inset-y-0 left-0 flex items-center">

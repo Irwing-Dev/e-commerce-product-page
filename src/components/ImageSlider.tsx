@@ -32,58 +32,98 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
     return (
         <div className="flex flex-col gap-2 justify-center items-center">
             <div className="flex justify-center items-center">
-                <Dialog>
-                    <DialogTrigger>
-                        {images.map((image, index) => (
-                            <Button
-                                className="bg-transparent w-aut h-auto hover:bg-transparent px-0"
-                                key={index}
-                            >
-                                <img
-                                    key={image}
-                                    src={image}
-                                    alt="ProductImg"
-                                    height={340}
-                                    className={`rounded-md ${
-                                        selectedIndex === index ? "" : "hidden"
-                                    } sm:w-[400px]`}
-                                    data-testid={`product-img-${index + 1}`}
-                                />
-                            </Button>
-                        ))}
-                    </DialogTrigger>
-                    <DialogContent className="bg-transparent border-none p-12">
-                        <Carousel opts={{ loop: true }}>
-                            <CarouselContent>
-                                {images.map((image, index) => (
-                                    <CarouselItem
-                                        key={index}
-                                        className="flex items-center justify-center"
-                                    >
-                                        <Card className="bg-transparent p-0 border-none">
-                                            <CardContent>
-                                                <img
-                                                    key={image}
-                                                    src={image}
-                                                    alt="ProductImage"
-                                                    className="rounded-md"
-                                                    height={340}
-                                                    width={340}
-                                                />
-                                            </CardContent>
-                                        </Card>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious />
-                            <CarouselNext />
-                        </Carousel>
-                    </DialogContent>
-                </Dialog>
+                    <Carousel
+                        opts={{ loop: true }}
+                        className="sm:hidden w-full"
+                    >
+                        <CarouselContent>
+                            {images.map((image, index) => (
+                                <CarouselItem
+                                    key={index}
+                                    className="flex items-center justify-center"
+                                >
+                                    <Card className="bg-transparent p-0 border-none">
+                                        <CardContent>
+                                            <img
+                                                key={image}
+                                                src={image}
+                                                alt="ProductImage"
+                                                className="rounded-md"
+                                                height={340}
+                                                width={340}
+                                            />
+                                        </CardContent>
+                                    </Card>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
+                    </Carousel>
+                <div className="hidden sm:block">
+                    <Dialog>
+                        <DialogTrigger>
+                            {images.map((image, index) => (
+                                <Button
+                                    className="bg-transparent w-aut h-auto hover:bg-transparent px-0"
+                                    key={index}
+                                >
+                                    <img
+                                        key={image}
+                                        src={image}
+                                        alt="ProductImg"
+                                        height={340}
+                                        className={`rounded-md ${
+                                            selectedIndex === index
+                                                ? ""
+                                                : "hidden"
+                                        } sm:w-[400px]`}
+                                        data-testid={`product-img-${index + 1}`}
+                                    />
+                                </Button>
+                            ))}
+                        </DialogTrigger>
+                        <DialogContent className="bg-transparent border-none p-12">
+                            <Carousel opts={{ loop: true }}>
+                                <CarouselContent>
+                                    {images.map((image, index) => (
+                                        <CarouselItem
+                                            key={index}
+                                            className="flex items-center justify-center"
+                                        >
+                                            <Card className="bg-transparent p-0 border-none">
+                                                <CardContent>
+                                                    <img
+                                                        key={image}
+                                                        src={image}
+                                                        alt="ProductImage"
+                                                        className="rounded-md"
+                                                        height={340}
+                                                        width={340}
+                                                    />
+                                                </CardContent>
+                                            </Card>
+                                        </CarouselItem>
+                                    ))}
+                                </CarouselContent>
+                                <CarouselPrevious />
+                                <CarouselNext />
+                            </Carousel>
+                        </DialogContent>
+                    </Dialog>
+                </div>
             </div>
-            <div className="hidden sm:flex gap-8" onClick={() => setIsOpen(false)}>
+            <div
+                className="hidden sm:flex gap-8"
+                onClick={() => setIsOpen(false)}
+            >
                 {thumbnails.map((thumbnail, index) => (
-                    <div key={thumbnail} className={`relative ${isOpen == false ? "z-auto" : "-z-10"}`}>
+                    <div
+                        key={thumbnail}
+                        className={`relative ${
+                            isOpen == false ? "z-auto" : "-z-10"
+                        }`}
+                    >
                         <img
                             src={thumbnail}
                             alt=""
