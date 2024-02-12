@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import ProductImg1 from "@/assets/images/image-product-1.jpg";
 import ProductImg2 from "@/assets/images/image-product-2.jpg";
 import ProductImg3 from "@/assets/images/image-product-3.jpg";
@@ -14,7 +16,27 @@ import { Button } from "@/components/ui/button";
 
 import { ImageSlider } from "./ImageSlider";
 
-export default function TestSection() {
+import { CartContext } from "@/context/CartContext";
+
+export default function ProductSection() {
+    const { count, setCount } = useContext(CartContext);
+    const { finalValue, setFinalValue } = useContext(CartContext);
+
+    const increment = () => {
+        setCount(count + 1);
+    };
+
+    const decrement = () => {
+        setCount(count - 1);
+
+        if (count == 0) setCount(0);
+    };
+
+    const multiply = () => {
+        setFinalValue(125 * count);
+        console.log(finalValue);
+    };
+
     return (
         <div className="min-h-screen w-5/6 grid lg:flex items-center justify-evenly mt-24 lg:mt-4">
             <div className="grid mb-12">
@@ -56,18 +78,26 @@ export default function TestSection() {
                 </div>
                 <div>
                     <div className="flex items-center mt-2 w-full p-2">
-                        <Button className="bg-[#f7f8fd] hover:bg-#f7f8fd text-[#ff7d1a] text-lg font-bold px-5 w-full lg:w-auto rounded-tr-none rounded-br-none">
+                        <Button
+                            className="bg-[#f7f8fd] hover:bg-#f7f8fd text-[#ff7d1a] text-lg font-bold px-5 w-full lg:w-auto rounded-tr-none rounded-br-none"
+                            onClick={decrement}
+                        >
                             &minus;
                         </Button>
                         <p className="font-bold py-2 px-5 w-full text-center lg:w-auto bg-[#f7f8fd]">
-                            0
+                            {count}
                         </p>
-                        <Button className="bg-[#f7f8fd] hover:bg-#f7f8fd text-[#ff7d1a] text-lg font-bold px-5 w-full lg:w-auto rounded-tl-none rounded-bl-none">
+                        <Button
+                            className="bg-[#f7f8fd] hover:bg-#f7f8fd text-[#ff7d1a] text-lg font-bold px-5 w-full lg:w-auto rounded-tl-none rounded-bl-none"
+                            onClick={increment}
+                        >
                             &#x0002B;
                         </Button>
                     </div>
-                    {/* <!-- Add to cart button --> */}
-                    <Button className="w-full lg:w-52 h-12 bg-[#ff7d1a] hover:bg-[#ff7d1a98] flex justify-evenly" >
+                    <Button
+                        className="w-full lg:w-52 h-12 bg-[#ff7d1a] hover:bg-[#ff7d1a98] flex justify-evenly"
+                        onClick={multiply}
+                    >
                         <img
                             src={CartIcon}
                             alt="CartIcon"

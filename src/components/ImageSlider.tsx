@@ -37,7 +37,10 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
                 <Dialog>
                     <DialogTrigger>
                         {images.map((image, index) => (
-                            <Button className="bg-transparent w-aut h-auto hover:bg-transparent px-0">
+                            <Button
+                                className="bg-transparent w-aut h-auto hover:bg-transparent px-0"
+                                key={index}
+                            >
                                 <img
                                     key={image}
                                     src={image}
@@ -125,7 +128,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
                             data-testid={`thumb-${index + 1}`}
                         />
                         <span
-                            className={`absolute bg-[#e6e2e2d8] w-full h-full top-0 border-solid rounded-md cursor-pointer border-2 border-[#ff7d1a] ${
+                            className={`absolute bg-[#e6e2e2d8] w-full h-full top-0  border-solid rounded-md cursor-pointer border-2 border-[#ff7d1a] ${
                                 selectedIndex === index ? "flex" : "hidden"
                             }`}
                             data-testid={`thumb-lightbox-${index + 1}`}

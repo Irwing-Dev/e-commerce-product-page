@@ -1,11 +1,9 @@
 import React, { useState, ComponentPropsWithRef } from "react";
 import { twMerge } from "tailwind-merge";
-
-import CartModal from "./CartModal";
+import CartModal from "@/components/CartModal";
 
 interface HeaderProps {
     logo: string;
-    cart: string;
     userAvatar: string;
 }
 
@@ -28,7 +26,7 @@ const NavBtns = ({
     );
 };
 
-const Header: React.FC<HeaderProps> = ({ logo, cart, userAvatar }) => {
+const Header: React.FC<HeaderProps> = ({ logo, userAvatar }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const handleMobileMenuToggle = () => {
@@ -88,11 +86,7 @@ const Header: React.FC<HeaderProps> = ({ logo, cart, userAvatar }) => {
                         </div>
                     </div>
                     <div className="flex gap-5 items-center">
-                        <img
-                            src={cart}
-                            className="cursor-pointer"
-                            onClick={CartModal}
-                        />
+                        <CartModal />
                         <img
                             src={userAvatar}
                             alt=""
