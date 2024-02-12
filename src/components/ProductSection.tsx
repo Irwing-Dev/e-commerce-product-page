@@ -38,7 +38,7 @@ export default function ProductSection() {
     };
 
     return (
-        <div className="min-h-screen w-5/6 grid lg:flex items-center justify-evenly mt-24 lg:mt-4">
+        <div className="min-h-screen w-5/6 grid lg:flex items-center justify-evenly mt-24 lg:mt-0">
             <div className="grid mb-12">
                 <ImageSlider
                     images={[
