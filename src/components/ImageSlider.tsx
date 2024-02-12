@@ -11,11 +11,6 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import ProductImg1 from "@/assets/images/image-product-1.jpg";
-import ProductImg2 from "@/assets/images/image-product-2.jpg";
-import ProductImg3 from "@/assets/images/image-product-3.jpg";
-import ProductImg4 from "@/assets/images/image-product-4.jpg";
-
 interface ImageSliderProps {
     images: string[];
     thumbnails: string[];
@@ -57,58 +52,24 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
                     <DialogContent className="bg-transparent border-none p-12">
                         <Carousel opts={{ loop: true }}>
                             <CarouselContent>
-                                <CarouselItem className="flex items-center justify-center">
-                                    <Card className="bg-transparent p-0 border-none">
-                                        <CardContent>
-                                            <img
-                                                src={ProductImg1}
-                                                alt="ProductImage"
-                                                className="rounded-md"
-                                                height={320}
-                                                width={320}
-                                            />
-                                        </CardContent>
-                                    </Card>
-                                </CarouselItem>
-                                <CarouselItem className="flex items-center justify-center">
-                                    <Card className="bg-transparent p-0 border-none">
-                                        <CardContent>
-                                            <img
-                                                src={ProductImg2}
-                                                alt="ProductImage"
-                                                className="rounded-md"
-                                                height={320}
-                                                width={320}
-                                            />
-                                        </CardContent>
-                                    </Card>
-                                </CarouselItem>
-                                <CarouselItem className="flex items-center justify-center">
-                                    <Card className="bg-transparent p-0 border-none">
-                                        <CardContent>
-                                            <img
-                                                src={ProductImg3}
-                                                alt="ProductImage"
-                                                className="rounded-md"
-                                                height={320}
-                                                width={320}
-                                            />
-                                        </CardContent>
-                                    </Card>
-                                </CarouselItem>
-                                <CarouselItem className="flex items-center justify-center">
-                                    <Card className="bg-transparent p-0 border-none">
-                                        <CardContent>
-                                            <img
-                                                src={ProductImg4}
-                                                alt="ProductImage"
-                                                className="rounded-md"
-                                                height={320}
-                                                width={320}
-                                            />
-                                        </CardContent>
-                                    </Card>
-                                </CarouselItem>
+                                {images.map((image, index) => (
+                                    <CarouselItem
+                                        key={index}
+                                        className="flex items-center justify-center"
+                                    >
+                                        <Card className="bg-transparent p-0 border-none">
+                                            <CardContent>
+                                                <img
+                                                    src={image}
+                                                    alt="ProductImage"
+                                                    className="rounded-md"
+                                                    height={340}
+                                                    width={340}
+                                                />
+                                            </CardContent>
+                                        </Card>
+                                    </CarouselItem>
+                                ))}
                             </CarouselContent>
                             <CarouselPrevious />
                             <CarouselNext />
