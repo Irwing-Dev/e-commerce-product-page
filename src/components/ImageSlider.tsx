@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +10,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+import { CartContext } from "@/context/CartContext";
 
 interface ImageSliderProps {
     images: string[];
@@ -25,6 +26,8 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
     const handleImageClick = (index: number) => {
         setSelectedIndex(index);
     };
+
+    const { isOpen, setIsOpen } = useContext(CartContext);
 
     return (
         <div className="flex flex-col gap-2 justify-center items-center">
@@ -60,6 +63,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
                                         <Card className="bg-transparent p-0 border-none">
                                             <CardContent>
                                                 <img
+                                                    key={image}
                                                     src={image}
                                                     alt="ProductImage"
                                                     className="rounded-md"
@@ -77,9 +81,9 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
                     </DialogContent>
                 </Dialog>
             </div>
-            <div className="flex gap-8">
+            <div className="hidden sm:flex gap-8" onClick={() => setIsOpen(false)}>
                 {thumbnails.map((thumbnail, index) => (
-                    <div key={thumbnail} className="relative">
+                    <div key={thumbnail} className={`relative ${isOpen == false ? "z-auto" : "-z-10"}`}>
                         <img
                             src={thumbnail}
                             alt=""

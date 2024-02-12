@@ -40,10 +40,10 @@ const Header: React.FC<HeaderProps> = ({ logo, userAvatar }) => {
                             <img
                                 src={logo}
                                 alt="Sneakers"
-                                className="w-[120px] md:w-auto"
+                                className="w-[100px] sm:w-auto"
                             />
                         </div>
-                        <div className="hidden md:block sm:ml-6">
+                        <div className="hidden min-[850px]:block sm:ml-6">
                             <nav className="space-x-4 flex">
                                 <NavBtns>Collections</NavBtns>
                                 <NavBtns>Men</NavBtns>
@@ -57,7 +57,7 @@ const Header: React.FC<HeaderProps> = ({ logo, userAvatar }) => {
                         <CartModal />
                         <img
                             src={userAvatar}
-                            alt=""
+                            alt="Avatar"
                             className="cursor-pointer hover:border-2 hover:border-[#ff7d1a] rounded-full"
                             width={40}
                             height={40}

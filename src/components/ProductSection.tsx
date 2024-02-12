@@ -20,7 +20,7 @@ import { CartContext } from "@/context/CartContext";
 
 export default function ProductSection() {
     const { count, setCount } = useContext(CartContext);
-    const { finalValue, setFinalValue } = useContext(CartContext);
+    const { setFinalValue } = useContext(CartContext);
 
     const increment = () => {
         setCount(count + 1);
@@ -29,16 +29,17 @@ export default function ProductSection() {
     const decrement = () => {
         setCount(count - 1);
 
-        if (count == 0) setCount(0);
+        if (count == 1) setCount(1);
     };
 
     const multiply = () => {
         setFinalValue(125 * count);
-        console.log(finalValue);
     };
 
     return (
-        <div className="min-h-screen w-5/6 grid lg:flex items-center justify-evenly mt-24 lg:mt-0">
+        <div
+            className="min-h-screen w-5/6 grid lg:flex items-center justify-evenly mt-24 lg:mt-0"
+        >
             <div className="grid mb-12">
                 <ImageSlider
                     images={[
@@ -101,7 +102,7 @@ export default function ProductSection() {
                         <img
                             src={CartIcon}
                             alt="CartIcon"
-                            className="brightness-200"
+                            className="brightness-[300]"
                             height={17}
                             width={17}
                         />

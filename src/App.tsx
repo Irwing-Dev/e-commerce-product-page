@@ -3,7 +3,7 @@ import avatar from "./assets/images/image-avatar.png";
 
 import Header from "./components/Header";
 import ProductSection from "./components/ProductSection";
-import { CartContextProvider } from "@/context/CartContextProvider"
+import { CartContextProvider } from "@/context/CartContextProvider";
 
 function App() {
     return (

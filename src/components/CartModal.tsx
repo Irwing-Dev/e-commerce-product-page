@@ -19,6 +19,9 @@ import iconDelete from "@/assets/images/icon-delete.svg";
 export default function CartModal() {
     const { count, setCount } = useContext(CartContext);
     const { finalValue, setFinalValue } = useContext(CartContext);
+    const { isOpen, setIsOpen } = useContext(CartContext);
+
+    console.log(isOpen);
 
     const deleteValues = () => {
         setFinalValue(0);
@@ -29,7 +32,7 @@ export default function CartModal() {
         <Dialog>
             <DialogTrigger>
                 <div>
-                    <img src={cart} className="cursor-pointer" />
+                    <img src={cart} className="cursor-pointer" onClick={() => setIsOpen(true)} alt="Cart" />
                     <span
                         className={`relative bottom-6 left-3 bg-[#ff7d1a] w-5 h-3 rounded-lg items-center justify-center text-xs text-white cursor-pointer ${
                             finalValue == 0 ? "hidden" : "flex"
@@ -39,7 +42,7 @@ export default function CartModal() {
                     </span>
                 </div>
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="fixed">
                 <Card className="w-11/12 sm:w-[370px] sm:right-24 fixed top-16 right-4 shadow-2xl">
                     <CardHeader>
                         <CardTitle className="text-lg">Cart</CardTitle>
@@ -73,17 +76,15 @@ export default function CartModal() {
                                             </p>
                                         </div>
                                     </div>
-                                    <DialogClose>
-                                        <Button variant={"ghost"}>
-                                            <img
-                                                src={iconDelete}
-                                                alt="delete"
-                                                height={16}
-                                                width={16}
-                                                onClick={deleteValues}
-                                            />
-                                        </Button>
-                                    </DialogClose>
+                                    <Button variant={"ghost"}>
+                                        <img
+                                            src={iconDelete}
+                                            alt="delete"
+                                            height={16}
+                                            width={16}
+                                            onClick={deleteValues}
+                                        />
+                                    </Button>
                                 </div>
                                 <DialogClose>
                                     <Button
